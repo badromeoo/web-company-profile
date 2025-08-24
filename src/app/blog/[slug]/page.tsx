@@ -7,13 +7,6 @@ import type { PortableTextBlock } from "sanity";
 import type { Image as SanityImage } from "sanity";
 import PostActions from "@/components/PostActions";
 
-// Definisikan tipe untuk Props halaman ini
-type Props = {
-  params: {
-    slug: string;
-  };
-};
-
 interface Post {
   _id: string;
   title: string;
@@ -39,8 +32,8 @@ const query = groq`*[_type == "post" && slug.current == $slug][0]{
   slug,
 }`;
 
-export default async function BlogPostPage({ params }: Props) {
-  const slug = params.slug;
+// PERBAIKAN FINAL DI SINI PADA TANDA TANGAN FUNGSI
+export default async function BlogPostPage({ params: { slug } }: { params: { slug: string } }) {
   const post: Post = await client.fetch(query, { slug });
 
   if (!post) {
@@ -84,7 +77,7 @@ export default async function BlogPostPage({ params }: Props) {
         <PortableText value={post.body} />
       </div>
 
- <PostActions postId={post._id} />
+      <PostActions postId={post._id} />
     </article>
   );
 }
