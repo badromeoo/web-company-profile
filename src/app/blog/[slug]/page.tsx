@@ -1,3 +1,5 @@
+
+
 import { client } from "@/lib/sanity.client";
 import { groq } from "next-sanity";
 import { PortableText } from "@portabletext/react";
@@ -32,9 +34,14 @@ const query = groq`*[_type == "post" && slug.current == $slug][0]{
   slug,
 }`;
 
-// PERBAIKAN FINAL DI SINI PADA TANDA TANGAN FUNGSI
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
+/**
+ * @param {{ params: { slug: string } }}
+ */
+
+
+
+export default async function BlogPostPage({ params }) {
+  const slug = params.slug as string;
   const post: Post = await client.fetch(query, { slug });
 
   if (!post) {
@@ -50,11 +57,9 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-4">
         {post.title}
       </h1>
-      
       <p className="text-center text-gray-400 mb-8">
         Published on {new Date(post.publishedAt).toLocaleDateString()}
       </p>
-      
       {post.mainImage && (
         <figure className="mb-8">
           <div className="relative w-full h-96">
@@ -73,11 +78,9 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           )}
         </figure>
       )}
-
       <div className="prose prose-invert max-w-none prose-lg">
         <PortableText value={post.body} />
       </div>
-
       <PostActions postId={post._id} />
     </article>
   );
