@@ -32,8 +32,9 @@ const query = groq`*[_type == "post" && slug.current == $slug][0]{
   slug,
 }`;
 
-// PERBAIKAN FINAL DI SINI PADA TANDA TANGAN FUNGSI
-export default async function BlogPostPage({ params: { slug } }: { params: { slug: string } }) {
+// PERBAIKAN FINAL DAN DEFINITIF PADA TANDA TANGAN FUNGSI
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const post: Post = await client.fetch(query, { slug });
 
   if (!post) {
