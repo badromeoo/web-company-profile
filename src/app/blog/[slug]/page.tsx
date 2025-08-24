@@ -1,16 +1,23 @@
 import { client } from "@/lib/sanity.client";
 import { groq } from "next-sanity";
 import { PortableText } from "@portabletext/react";
-import imageUrlBuilder from "@sanity/image-url";
+import imageUrlBuilder from '@sanity/image-url';
 import Image from "next/image";
 import type { PortableTextBlock } from "sanity";
 import type { Image as SanityImage } from "sanity";
 import PostActions from "@/components/PostActions";
 
+// Definisikan tipe untuk Props halaman ini
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
 interface Post {
   _id: string;
   title: string;
-  slug: { current: string }; // Tipe data slug adalah objek
+  slug: { current: string };
   mainImage: SanityImage;
   caption: string;
   publishedAt: string;
@@ -22,7 +29,6 @@ function urlFor(source: SanityImage) {
   return builder.image(source);
 }
 
-// PERBAIKAN PADA QUERY DI SINI
 const query = groq`*[_type == "post" && slug.current == $slug][0]{
   _id,
   title,
@@ -30,34 +36,47 @@ const query = groq`*[_type == "post" && slug.current == $slug][0]{
   caption,
   publishedAt,
   body,
-  slug, // <-- Ambil seluruh objek slug, bukan hanya .current
+  slug,
 }`;
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const { slug } = await params; // Memperbaiki peringatan Next.js
+export default async function BlogPostPage({ params }: Props) {
+  const slug = params.slug;
   const post: Post = await client.fetch(query, { slug });
 
   if (!post) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
         <h1 className="text-4xl font-bold">Post Not Found</h1>
-        <p>The post you are looking for does not exist.</p>
       </div>
     );
   }
 
   return (
     <article className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-4">{post.title}</h1>
-
-      <p className="text-center text-gray-400 mb-8">Published on {new Date(post.publishedAt).toLocaleDateString()}</p>
-
+      <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-4">
+        {post.title}
+      </h1>
+      
+      <p className="text-center text-gray-400 mb-8">
+        Published on {new Date(post.publishedAt).toLocaleDateString()}
+      </p>
+      
       {post.mainImage && (
         <figure className="mb-8">
           <div className="relative w-full h-96">
-            <Image src={urlFor(post.mainImage).url()} alt={post.title} fill style={{ objectFit: "cover" }} className="rounded-lg" />
+            <Image
+              src={urlFor(post.mainImage).url()}
+              alt={post.title}
+              fill
+              style={{ objectFit: "cover" }}
+              className="rounded-lg"
+            />
           </div>
-          {post.caption && <figcaption className="text-start font-bold text-xl text-gray-100 mt-2">{post.caption}</figcaption>}
+          {post.caption && (
+            <figcaption className="text-center text-sm text-gray-500 mt-2">
+              {post.caption}
+            </figcaption>
+          )}
         </figure>
       )}
 
@@ -65,8 +84,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         <PortableText value={post.body} />
       </div>
 
-      {/* Sekarang ini akan berfungsi dengan benar */}
-    <PostActions postId={post._id} />
+ <PostActions postId={post._id} />
     </article>
   );
 }
