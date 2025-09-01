@@ -1,4 +1,5 @@
 import axios from 'axios'; // <-- 1. Import axios
+import Image from 'next/image';
 
 // Define a type for the user data we expect from the API
 interface User {
@@ -31,10 +32,12 @@ export default async function TeamsPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {users.map((user) => (
           <div key={user.login.uuid} className="bg-gray-800 p-6 rounded-lg text-center">
-            <img
+            <Image
               src={user.picture.large}
               alt={`${user.name.first} ${user.name.last}`}
               className="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-700"
+              width={128}
+              height={128}
             />
             <h2 className="text-xl font-bold text-white">
               {user.name.first} {user.name.last}
