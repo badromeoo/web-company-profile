@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-gray-900 text-white flex flex-col min-h-screen`}>
-        <AuthInitializer /> {/* <-- 2. LETAKKAN DI SINI */}
+        <AuthInitializer /> 
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
