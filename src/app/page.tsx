@@ -1,8 +1,8 @@
 export default function Home() {
   return (
-    // Gunakan Fragment <>...</> untuk membungkus beberapa section
+    
     <>
-      {/* Hero Section */}
+      
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
@@ -18,14 +18,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Highlight Section */}
+      
       <section className="py-12 bg-gray-800">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-10">
             Our Core Services
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Service Card 1 */}
+            
             <div className="bg-gray-900 p-6 rounded-lg text-center">
               <h3 className="text-xl font-bold mb-2">Web Development</h3>
               <p className="text-gray-400">
@@ -34,7 +34,7 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Service Card 2 */}
+            
             <div className="bg-gray-900 p-6 rounded-lg text-center">
               <h3 className="text-xl font-bold mb-2">Mobile Apps</h3>
               <p className="text-gray-400">
@@ -42,7 +42,7 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Service Card 3 */}
+            
             <div className="bg-gray-900 p-6 rounded-lg text-center">
               <h3 className="text-xl font-bold mb-2">UI/UX Design</h3>
               <p className="text-gray-400">
@@ -53,14 +53,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      
       <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-10">
             What Our Clients Say
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Testimonial Card 1 */}
+            
             <div className="bg-gray-800 p-6 rounded-lg border-l-4 border-blue-500">
               <p className="text-gray-300 italic mb-4">
                 &quot;Working with this team was a game-changer for our business.
@@ -70,7 +70,7 @@ export default function Home() {
               <p className="text-sm text-gray-400">CEO, Tech Innovators</p>
             </div>
 
-            {/* Testimonial Card 2 */}
+            
             <div className="bg-gray-800 p-6 rounded-lg border-l-4 border-blue-500">
               <p className="text-gray-300 italic mb-4">
                 &quot;The final product exceeded all our expectations. Highly
@@ -82,7 +82,7 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Testimonial Card 3 */}
+            
             <div className="bg-gray-800 p-6 rounded-lg border-l-4 border-blue-500">
               <p className="text-gray-300 italic mb-4">
                 &quot;An absolute pleasure to work with. They understood our vision

@@ -6,7 +6,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import type { Image as SanityImage } from "sanity";
 import type { PortableTextBlock } from "sanity";
 
-// Definisikan tipe yang lebih spesifik
+
 type Span = { _type: "span"; text: string };
 type Block = PortableTextBlock & { children?: Span[] };
 
@@ -22,7 +22,7 @@ interface Post {
   mainImage: SanityImage;
   author: Author;
   publishedAt: string;
-  body: Block[]; // Gunakan tipe Block yang spesifik
+  body: Block[]; 
 }
 
 const builder = imageUrlBuilder(client);

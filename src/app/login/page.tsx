@@ -4,7 +4,7 @@ import { useState } from "react";
 import Backendless from "@/lib/backendless.client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useUserStore } from "@/store/userStore"; // <-- 1. IMPOR useUserStore
+import { useUserStore } from "@/store/userStore"; 
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -12,7 +12,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const { setCurrentUser } = useUserStore(); // <-- 2. AMBIL FUNGSI setCurrentUser
+  const { setCurrentUser } = useUserStore(); 
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ export default function LoginPage() {
       const user = await Backendless.UserService.login(email, password, true);
       console.log("User logged in:", user);
 
-      setCurrentUser(user); // <-- 3. PERBARUI STATE GLOBAL DI SINI
+      setCurrentUser(user); 
 
       router.push("/");
     } catch (err) {

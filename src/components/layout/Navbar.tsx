@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 export default function Navbar() {
   const { currentUser, setCurrentUser, isLoading } = useUserStore();
   const router = useRouter();
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State untuk menu mobile
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
 
   const handleLogout = async () => {
     try {

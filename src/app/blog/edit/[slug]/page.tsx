@@ -10,11 +10,11 @@ import imageUrlBuilder from "@sanity/image-url";
 import type { Image as SanityImage, PortableTextBlock } from "sanity";
 import { nanoid } from "nanoid";
 
-// Tipe spesifik untuk children dari block
+
 type Span = { _type: "span"; text: string };
 type Block = PortableTextBlock & { children?: Span[] };
 
-// Tipe spesifik untuk referensi aset gambar Sanity
+
 type ImageAssetRef = {
   _type: "image";
   asset: {

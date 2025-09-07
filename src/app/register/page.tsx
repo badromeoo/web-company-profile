@@ -27,7 +27,7 @@ export default function RegisterPage() {
     };
 
     try {
-      // The register function accepts the user object directly.
+      
       await Backendless.UserService.register(userObject);
       setSuccess(true);
       setTimeout(() => {

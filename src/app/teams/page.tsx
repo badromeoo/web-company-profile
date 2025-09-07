@@ -1,7 +1,7 @@
-import axios from 'axios'; // <-- 1. Import axios
+import axios from 'axios'; 
 import Image from 'next/image';
 
-// Define a type for the user data we expect from the API
+
 interface User {
   name: {
     first: string;
@@ -16,9 +16,9 @@ interface User {
   };
 }
 
-// The function remains async
+
 export default async function TeamsPage() {
-  // 2. Gunakan axios.get() untuk fetch data. Perhatikan, kita tidak perlu .json() lagi
+  
   const response = await axios.get('https://randomuser.me/api/?results=6');
   const users: User[] = response.data.results;
 
